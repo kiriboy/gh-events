@@ -3,7 +3,18 @@ on:
   pull_request: 
     types: 
       - opened
+    branches: 
+      - master # target only main branch
+      - 'dev-*' # target all starts with dev- like, dev-new, dev-buttons-update
+      - 'feat/**' # target all starts with feat/ like, feat/new, feat/new/button
   workflow_dispatch: 
+  push:
+    branches: 
+      - master # target only main branch
+      - 'dev-*' # target all starts with dev- like, dev-new, dev-buttons-update
+      - 'feat/**' # target all starts with feat/ like, feat/new, feat/new/button
+    paths-ignore: 
+      - '.github/workflows/*' # workflow running will NOT EXECUTE if any changes made into files in .github/workflows 
 jobs:
   deploy:
     runs-on: ubuntu-latest
